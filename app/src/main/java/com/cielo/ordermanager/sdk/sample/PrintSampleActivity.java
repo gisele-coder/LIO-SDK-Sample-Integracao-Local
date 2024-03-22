@@ -3,10 +3,9 @@ package com.cielo.ordermanager.sdk.sample;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.cielo.ordermanager.sdk.R;
 
@@ -26,9 +25,9 @@ public class PrintSampleActivity extends AppCompatActivity {
     private PrinterManager printerManager;
     private PrinterListener printerListener;
 
-    private HashMap<String, Integer> alignCenter = new HashMap<>();
-    private HashMap<String, Integer> alignLeft = new HashMap<>();
-    private HashMap<String, Integer> alignRight = new HashMap<>();
+    private final HashMap<String, Integer> alignCenter = new HashMap<>();
+    private final HashMap<String, Integer> alignLeft = new HashMap<>();
+    private final HashMap<String, Integer> alignRight = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,10 +110,7 @@ public class PrintSampleActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            default:
-                finish();
-                return super.onOptionsItemSelected(item);
-        }
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

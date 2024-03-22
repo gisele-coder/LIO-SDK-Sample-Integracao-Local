@@ -1,15 +1,14 @@
 package com.cielo.ordermanager.sdk;
 
 import android.content.Context;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewEmptySupport extends RecyclerView {
     private View emptyView;
 
-    private AdapterDataObserver emptyObserver = new AdapterDataObserver() {
+    private final AdapterDataObserver emptyObserver = new AdapterDataObserver() {
 
         @Override
         public void onChanged() {

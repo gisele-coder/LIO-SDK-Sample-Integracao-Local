@@ -1,13 +1,12 @@
 package com.cielo.ordermanager.sdk.sample;
 
 
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 
 import com.cielo.ordermanager.sdk.R;
 import com.cielo.ordermanager.sdk.adapter.PaymentCodeSpinnerAdapter;
@@ -52,7 +51,7 @@ public class PaymentActivity extends BasePaymentActivity {
             List<String> installmentsArray = Arrays.asList(getResources()
                     .getStringArray(R.array.installments_array));
             final ArrayAdapter<String> installmentsAdapter =
-                    new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,
+                    new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                             installmentsArray);
 
             installmentsSpinner.setAdapter(installmentsAdapter);

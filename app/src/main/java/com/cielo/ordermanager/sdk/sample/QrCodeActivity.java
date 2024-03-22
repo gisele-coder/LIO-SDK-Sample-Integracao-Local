@@ -2,9 +2,8 @@ package com.cielo.ordermanager.sdk.sample;
 
 
 import android.os.Bundle;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.cielo.ordermanager.sdk.R;
 import com.google.zxing.ResultPoint;
@@ -44,9 +43,9 @@ public class QrCodeActivity extends AppCompatActivity {
     }
 
 
-    private CaptureManager capture = null;
+    private final CaptureManager capture = null;
 
-    private BarcodeCallback callback = new BarcodeCallback() {
+    private final BarcodeCallback callback = new BarcodeCallback() {
         @Override
         public void barcodeResult(BarcodeResult result) {
             if (result.getText() == null) {
