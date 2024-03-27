@@ -170,6 +170,8 @@ public abstract class BasePaymentActivity extends AppCompatActivity {
             if (order != null && order.getItems().size() > 0) {
                 Item item = order.getItems().get(0);
                 order.decreaseQuantity(item.getId());
+                order.removeItem(item.getId());
+                order.getItems().remove(item); //tive que remover direto da lista pois os metodos do order não funcionou
                 orderManager.updateOrder(order);
                 updatePaymentButton();
             } else {

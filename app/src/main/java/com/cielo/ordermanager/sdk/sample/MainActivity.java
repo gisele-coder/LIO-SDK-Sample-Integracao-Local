@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        conifgSDK();
+        configSDK();
         Settings settings = infoManager.getSettings(this);
 
         merchantCodeText.setText(settings.getMerchantCode());
@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
         Log.i("TAG", "Hardware: " + Build.HARDWARE);
     }
 
-    protected void conifgSDK() {
+    protected void configSDK() {
         infoManager = new InfoManager();
         Credentials credentials = new Credentials(BuildConfig.CLIENT_ID, BuildConfig.ACCESS_TOKEN);
         orderManager = new OrderManager(credentials, this);
