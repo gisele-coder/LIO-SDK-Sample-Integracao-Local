@@ -2,9 +2,6 @@ package com.cielo.ordermanager.sdk.sample;
 
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,18 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.cielo.ordermanager.sdk.R;
+import com.cielo.ordermanager.sdk.adapter.OrderRecyclerViewAdapter;
+import com.cielo.ordermanager.sdk.util.ConfigSDKUtils;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import com.cielo.ordermanager.sdk.BuildConfig;
-import com.cielo.ordermanager.sdk.R;
-
-import com.cielo.ordermanager.sdk.adapter.OrderRecyclerViewAdapter;
-
-import cielo.orders.domain.Credentials;
 import cielo.orders.domain.Order;
 import cielo.orders.domain.ResultOrders;
 import cielo.sdk.order.OrderManager;
@@ -47,7 +41,9 @@ public class ListOrdersActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Listagem de Ordens");
-        configSDK();
+
+        orderManager = ConfigSDKUtils.configSDK(this);
+        loadOrders();
     }
 
     @Override
@@ -67,9 +63,7 @@ public class ListOrdersActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void configSDK() {
-        Credentials credentials = new Credentials(BuildConfig.CLIENT_ID, BuildConfig.ACCESS_TOKEN);
-        orderManager = new OrderManager(credentials, this);
+    private void loadOrders() {
         orderManager.bind(this, new ServiceBindListener() {
             @Override
             public void onServiceBoundError(Throwable throwable) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.cielo.ordermanager.sdk.BuildConfig;
 import com.cielo.ordermanager.sdk.R;
+import com.cielo.ordermanager.sdk.util.ConfigSDKUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,13 +45,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        configSDK();
+        //TODO PODERIA VALIDAR AS CREDENCIAIS
+        //orderManager = ConfigSDKUtils.configSDK(this);
+
+        infoManager = new InfoManager();
         Settings settings = infoManager.getSettings(this);
 
         merchantCodeText.setText(settings.getMerchantCode());
         logicNumberText.setText(settings.getLogicNumber());
         float batteryLevel = infoManager.getBatteryLevel(this);
-
         DeviceModel deviceModel = infoManager.getDeviceModel();
         if (deviceModel == DeviceModel.LIO_V1) {
             printerButton.setVisibility(View.GONE);
@@ -77,12 +80,6 @@ public class MainActivity extends Activity {
         Log.i("TAG", "FINGERPRINT: " + Build.FINGERPRINT);
         Log.i("TAG", "Version Code: " + Build.VERSION.RELEASE);
         Log.i("TAG", "Hardware: " + Build.HARDWARE);
-    }
-
-    protected void configSDK() {
-        infoManager = new InfoManager();
-        Credentials credentials = new Credentials(BuildConfig.CLIENT_ID, BuildConfig.ACCESS_TOKEN);
-        orderManager = new OrderManager(credentials, this);
     }
 
     @OnClick(R.id.checkout_button)

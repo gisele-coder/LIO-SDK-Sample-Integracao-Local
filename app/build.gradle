@@ -76,6 +76,8 @@ dependencies {
         exclude module: 'support-v4'
     }
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+
+    //remover depois usar view binding e data binding normal
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 

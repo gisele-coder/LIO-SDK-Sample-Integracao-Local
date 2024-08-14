@@ -21,6 +21,7 @@ import com.cielo.ordermanager.sdk.R;
 import com.cielo.ordermanager.sdk.adapter.PaymentCodeSpinnerAdapter;
 import com.cielo.ordermanager.sdk.adapter.PrimarySpinnerAdapter;
 import com.cielo.ordermanager.sdk.adapter.SecondarySpinnerAdapter;
+import com.cielo.ordermanager.sdk.util.ConfigSDKUtils;
 import com.cielo.ordermanager.sdk.util.NumberUtils;
 
 import cielo.orders.domain.Credentials;
@@ -106,8 +107,10 @@ public abstract class BasePaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
         ButterKnife.bind(this);
 
-        configSDK();
+        orderManager = ConfigSDKUtils.configSDK(this);
+        createDraftOrder();
         configUi();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Pagamento");
     }
@@ -118,9 +121,7 @@ public abstract class BasePaymentActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void configSDK() {
-        Credentials credentials = new Credentials(BuildConfig.CLIENT_ID, BuildConfig.ACCESS_TOKEN);
-        orderManager = new OrderManager(credentials, this);
+    private void createDraftOrder() {
         orderManager.bind(this, new ServiceBindListener() {
 
             @Override
